@@ -8,7 +8,7 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - uses: sublimelsp/notify-repository-on-published-release-action@v1
+      - uses: alihsaas/notify-repository-on-published-release-action@v2
         with:
           payload: '${{ toJson(github.event) }}'
-          personal-access-token: ${{ secrets.RWOLS_PERSONAL_ACCESS_TOKEN }}
+          personal-access-token: ${{ secrets.ALIHSAASS_PERSONAL_ACCESS_TOKEN }}

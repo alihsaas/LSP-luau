@@ -1,3 +1,4 @@
+# type: ignore[import]
 from LSP.plugin import AbstractPlugin
 from LSP.plugin import register_plugin
 from LSP.plugin import unregister_plugin
@@ -5,7 +6,7 @@ from LSP.plugin.core.typing import Dict, Optional, Tuple
 import sublime
 
 
-class Lua(AbstractPlugin):
+class RobloxLuau(AbstractPlugin):
     @classmethod
     def name(cls) -> str:
         return "LSP-{}".format(cls.__name__.lower())
@@ -32,8 +33,8 @@ class Lua(AbstractPlugin):
 
 
 def plugin_loaded() -> None:
-    register_plugin(Lua)
+    register_plugin(RobloxLuau)
 
 
 def plugin_unloaded() -> None:
-    unregister_plugin(Lua)
+    unregister_plugin(RobloxLuau)

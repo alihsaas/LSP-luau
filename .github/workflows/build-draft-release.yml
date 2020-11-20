@@ -3,8 +3,8 @@ name: Build Draft Release
 on:
   workflow_dispatch:
     inputs:
-      vscode-lua-git-tag:
-        description: Git tag to check out for the vscode-lua repo
+      vscode-robloxluau-version:
+        description: Version of the server of LSP-RobloxLuau
         required: true
       semver:
         description: Semantic version to release
@@ -15,11 +15,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Clone the LSP-lua repository
+      - name: Clone the LSP-RobloxLuau repository
         uses: actions/checkout@v2
 
       - name: Create the release files
-        run: make VSCODE_LUA_GIT_TAG=${{ github.event.inputs.vscode-lua-git-tag }}
+        run: make
 
       - name: Create release
         id: create-release
@@ -32,7 +32,7 @@ jobs:
           draft: true
           prerelease: false
           body: |
-            This release contains version ${{ github.event.inputs.vscode-lua-git-tag }} of the lua language server.
+            This release contains version ${{ github.event.inputs.vscode-robloxluau-version }} of the Roblox Luau language server.
             Sublime-Text-Version-Range: >=4070
 
       - name: Upload Linux Release
@@ -42,7 +42,7 @@ jobs:
         with:
           upload_url: ${{ steps.create-release.outputs.upload_url }}
           asset_path: ./out/linux-x64/release.zip
-          asset_name: LSP-lua_linux-x64.zip
+          asset_name: LSP-robloxluau_linux-x64.zip
           asset_content_type: application/zip
 
       - name: Upload macOS Release
@@ -52,7 +52,7 @@ jobs:
         with:
           upload_url: ${{ steps.create-release.outputs.upload_url }}
           asset_path: ./out/osx-x64/release.zip
-          asset_name: LSP-lua_osx-x64.zip
+          asset_name: LSP-robloxluau_osx-x64.zip
           asset_content_type: application/zip
 
       - name: Upload Windows Release
@@ -62,5 +62,5 @@ jobs:
         with:
           upload_url: ${{ steps.create-release.outputs.upload_url }}
           asset_path: ./out/windows-x64/release.zip
-          asset_name: LSP-lua_windows-x64.zip
+          asset_name: LSP-robloxluau_windows-x64.zip
           asset_content_type: application/zip
